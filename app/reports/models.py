@@ -1,0 +1,71 @@
+from django.db import models
+from django.urls import reverse
+
+
+class YearClass(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField(blank=True)
+
+    class Meta:
+        verbose_name_plural = "YearClass"
+        ordering = ("name",)
+
+    def __str__(self):
+        return self.name
+
+
+class Student(models.Model):
+    student_id = models.CharField(max_length=255, unique=True, blank=True)
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    year_class = models.ForeignKey(
+        YearClass, on_delete=models.CASCADE, null=True, blank=True
+    )
+
+    class Meta:
+        ordering = ("last_name",)
+
+    def get_absolute_url(self):
+        return reverse("student-detail", kwargs={"pk": self.pk})
+
+    def __str__(self):
+        return f"{self.last_name}, {self.first_name} (ST)"
+
+
+class Teacher(models.Model):
+    teacher_id = models.CharField(max_length=255, unique=True, blank=True)
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f" {self.last_name}, {self.first_name} (TR)"
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField(blank=True)
+
+    class Meta:
+        verbose_name_plural = "Categories"
+
+    def __str__(self):
+        return self.name.title()
+
+
+class Remark(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    student = models.ForeignKey(
+        Student, related_name="student_remarks", on_delete=models.CASCADE
+    )
+
+    title = models.CharField(max_length=255)
+    text = models.TextField()
+    created_by = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def get_absolute_url(self):
+        return reverse("remark-detail", kwargs={"pk": self.pk})
+
+    def __str__(self):
+        return f"{self.title} - {self.student.first_name} {self.student.last_name}"

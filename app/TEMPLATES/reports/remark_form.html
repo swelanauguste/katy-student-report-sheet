@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block head_title %}
+Remark form
+{% endblock head_title %}
+
+
+{% block content %}
+<div class="container py-5 shadow rounded-4">
+    <h1>Remark form</h1>
+    <hr>
+    <div class="col-lg-6 mx-auto p-5 shadow rounded-4">
+        <form action=""
+            method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-lg-6">
+                    {{ form.category|as_crispy_field }}
+                </div>
+                <div class="col-lg-6">
+                    {{ form.student|as_crispy_field }}
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    {{ form.title|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    {{ form.text|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    {{ form.created_by|as_crispy_field }}
+                </div>
+            </div>
+            <div class="my-3 text-end">
+                <button class="btn btn-outline-dark px-5"
+                    type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+{% endblock content %}
