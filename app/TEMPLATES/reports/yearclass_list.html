@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+{% block head_title %}
+Students
+{% endblock head_title %}
+
+
+{% block content %}
+
+<div class="container py-5">
+    <ul>
+        {% for yr_cls in object_list %}
+        <li><a href="{{yr_cls.get_absolute_url}}">{{yr_cls}}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock content %}

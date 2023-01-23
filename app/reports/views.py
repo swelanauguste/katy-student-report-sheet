@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.views.generic import CreateView, DetailView, ListView
 
 from .forms import RemarkCreateForm
-from .models import Remark, Student
+from .models import Remark, Student, YearClass
 
 
 class StudentListView(ListView):
@@ -15,7 +15,7 @@ class StudentDetailView(DetailView):
     model = Student
 
 
-class RemarkCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+class RemarkCreateView(SuccessMessageMixin, CreateView):
     model = Remark
     form_class = RemarkCreateForm
     success_message = "%(title)s was created successfully"
@@ -27,3 +27,11 @@ class RemarkCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
 class RemarkDetailView(DetailView):
     model = Remark
+
+
+class YearClassListView(ListView):
+    model = YearClass
+
+
+class YearClassDetailView(DetailView):
+    model = YearClass

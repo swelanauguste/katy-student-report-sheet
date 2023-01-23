@@ -12,7 +12,7 @@ student_count = Student.objects.count()
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         fake = Faker()
-        for _ in range(20):
+        for _ in range(500):
             category = Category.objects.get(pk=randint(1, cat_count))
             student = Student.objects.get(pk=randint(1, student_count))
             title = fake.sentence(nb_words=5, variable_nb_words=False)

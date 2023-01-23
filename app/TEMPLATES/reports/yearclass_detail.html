@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block head_title %}
+class {{object}}
+{% endblock head_title %}
+
+{% block content %}
+<div class="container py-5 shadow rounded-4">
+    <h1>Class {{object}}</h1>
+    <hr>
+    <div class="col-lg-6 mx-auto p-5 shadow rounded-4">
+        <ul>
+            {% for student in object.student_year_classes.all %}
+            <li class="h2">{{student}}</li>
+            <hr>
+            <ul>
+                {% for remark in student.student_remarks.all %}
+                <li>{{remark.title}}</li>
+                <li>{{remark.text}}</li>
+                <li>
+                    <a href="#">{{remark.created_by}}</a></li>
+                <li>{{remark.created_at|date:"d M Y"}}</li>
+                <hr>
+                {% endfor %}
+            </ul>
+
+            {% endfor %}
+        </ul>
+    </div>
+
+</div>
+
+{% endblock content %}
