@@ -16,7 +16,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["https://css.kingship.info/", "*"]
 
-CSRF_TRUSTED_ORIGINS = ["http://css.kingship.info"]
+CSRF_TRUSTED_ORIGINS = ["https://css.kingship.info"]
 
 
 # Application definition
