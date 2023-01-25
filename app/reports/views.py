@@ -26,6 +26,12 @@ class StudentDetailView(DetailView):
     model = Student
 
 
+class StudentCreateView(SuccessMessageMixin, CreateView):
+    model = Student
+    fields = "__all__"
+    success_message = "%(student_id)s was created successfully"
+
+
 class RemarkCreateView(SuccessMessageMixin, CreateView):
     model = Remark
     form_class = RemarkCreateForm

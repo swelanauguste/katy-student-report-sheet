@@ -26,7 +26,7 @@ class Student(models.Model):
     )
 
     class Meta:
-        ordering = ("last_name",)
+        ordering = ("last_name", "first_name")
 
     def get_absolute_url(self):
         return reverse("student-detail", kwargs={"pk": self.pk})

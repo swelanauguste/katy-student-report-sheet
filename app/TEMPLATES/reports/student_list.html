@@ -9,6 +9,8 @@ Students
 
 {% block content %}
 
+{% include "add_student.html" %}
+
 <form id="student_filter_form"
     method="get"
     action="{% url 'student-list' %}">
