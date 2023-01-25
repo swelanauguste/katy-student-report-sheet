@@ -15,7 +15,8 @@ class {{object}}
             <hr>
             <ul>
                 {% for remark in student.student_remarks.all %}
-                <li>{{remark.title}}</li>
+                <li>{{remark.student}}</li>
+                <li>{{remark.text}}</li>
                 <li>{{remark.text}}</li>
                 <li>
                     <a href="#">{{remark.created_by}}</a></li>
