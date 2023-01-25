@@ -1,19 +1,43 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
 
 {% block head_title %}
 Students
 {% endblock head_title %}
 
-
 {% block content %}
 
-<div class="container py-5">
-    <ul>
-        {% for yr_cls in object_list %}
-        <li><a href="{{yr_cls.get_absolute_url}}">{{yr_cls}}</a></li>
-        {% endfor %}
-    </ul>
+<div class="accordion accordion-flush shadow rounded-4 p-3"
+    id="accordionFlushExample">
+    {% for year_class in object_list %}
+    <div class="accordion-item">
+        <h2 class="accordion-header"
+            id="flush-heading{{year_class.pk}}">
+            <button class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapse{{year_class.pk}}"
+                aria-expanded="false"
+                aria-controls="flush-collapse{{year_class.pk}}">
+                Form {{year_class}}
+            </button>
+        </h2>
+        <div id="flush-collapse{{year_class.pk}}"
+            class="accordion-collapse collapse"
+            aria-labelledby="flush-heading{{year_class.pk}}"
+            data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+                <ol>
+                    {% for student in year_class.student_year_classes.all %}
+                    <li><a href="{{student.get_absolute_url}}">{{student.last_name|title}},
+                            {{student.first_name|title}}</a></li>
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
 </div>
 
 {% endblock content %}

@@ -69,8 +69,10 @@
 <body class="small">
     {% include 'nav_bar.html' %}
     {% include 'messages.html' %}
-    {% block content %}
-    {% endblock content %}
+    <div class="col-lg-4 mx-auto py-5">
+        {% block content %}
+        {% endblock content %}
+    </div>
     {% include 'footer.html' %}
 
 

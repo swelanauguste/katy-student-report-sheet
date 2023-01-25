@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
 
 {% block head_title %}
 Students
@@ -8,12 +9,39 @@ Students
 
 {% block content %}
 
-<div class="container py-5">
-    <ul>
+<form id="student_filter_form"
+    method="get"
+    action="{% url 'student-list' %}">
+    <div class="row">
+        <div class="col-lg-6">
+            {{ form.year_class|as_crispy_field }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            {{ form.last_name|as_crispy_field }}
+        </div>
+        <div class="col-lg-6">
+            {{ form.first_name|as_crispy_field }}
+        </div>
+    </div>
+    <div class="my-3 text-end">
+        <a class="btn btn-sm btn-secondary me-2 rounded-pill px-3"
+            href="{% url 'student-list' %}">Reset</a>
+        <button type="submit"
+            class="btn btn-sm btn-outline-info px-5 rounded-pill ">Search</button>
+    </div>
+</form>
+<hr>
+<br>
+
+<div class="container py-3">
+    <ol>
         {% for student in object_list %}
-        <li><a href="{{student.get_absolute_url}}">{{student}}</a></li>
+        <li><a class="text-decoration-none text-dark"
+                href="{{student.get_absolute_url}}">{{student}}</a></li>
         {% endfor %}
-    </ul>
+    </ol>
 </div>
 
 {% endblock content %}
