@@ -9,7 +9,7 @@ yr_cls_count = YearClass.objects.count()
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         fake = Faker()
-        for _ in range(20):
+        for _ in range(120):
             student_id = fake.ean(length=8)
             first_name = fake.first_name()
             last_name = fake.last_name()
