@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "django_filters",
     "reports",
+    "crispy_bootstrap5",
 ]
 
 MIDDLEWARE = [
@@ -151,4 +152,6 @@ ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = "emails"
 
-CRISPY_TEMPLATE_PACK = "bootstrap4"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"

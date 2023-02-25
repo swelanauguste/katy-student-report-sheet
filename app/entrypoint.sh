@@ -17,6 +17,7 @@ python manage.py flush --no-input
 python manage.py createsuperuser --username kingship --email kingship.lc@gmail.com --no-input
 python manage.py collectstatic --no-input
 python manage.py add_category_list
+python manage.py add_subject_list
 python manage.py add_year_class
 python manage.py add_fake_teachers
 python manage.py add_fake_students

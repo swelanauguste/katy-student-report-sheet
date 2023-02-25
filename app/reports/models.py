@@ -9,7 +9,7 @@ class YearClass(models.Model):
     class Meta:
         verbose_name_plural = "YearClass"
         ordering = ("name",)
-        
+
     def get_absolute_url(self):
         return reverse("year-class-detail", kwargs={"pk": self.pk})
 
@@ -17,12 +17,24 @@ class YearClass(models.Model):
         return self.name
 
 
+class Subject(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.name.title()
+
+
 class Student(models.Model):
     student_id = models.CharField(max_length=255, unique=True, blank=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
-    year_class = models.ForeignKey(
-        YearClass, on_delete=models.CASCADE, null=True, blank=True, related_name='student_year_classes'
+    subject = models.ManyToManyField(Subject, blank=True)
+    year_class = models.ForeignKey( YearClass,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="student_year_classes",
     )
 
     class Meta:
@@ -39,6 +51,7 @@ class Teacher(models.Model):
     teacher_id = models.CharField(max_length=255, unique=True, blank=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
+    subject = models.ManyToManyField(Subject, blank=True)
 
     def __str__(self):
         return f" {self.last_name}, {self.first_name} (TR)"

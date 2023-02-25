@@ -4,3 +4,4 @@ django-allauth
 django-filter
 tzdata
 gunicorn
+crispy-bootstrap5
