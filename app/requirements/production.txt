@@ -3,3 +3,4 @@ django-crispy-forms
 django-allauth
 django-filter
 tzdata
+gunicorn
