@@ -3,9 +3,11 @@ from random import randint
 from django.core.management.base import BaseCommand
 from faker import Faker
 
-from ...models import Student, YearClass
+from ...models import Student, Subject, YearClass
 
 yr_cls_count = YearClass.objects.count()
+
+
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         fake = Faker()
@@ -18,6 +20,6 @@ class Command(BaseCommand):
                 first_name=first_name,
                 last_name=last_name,
                 student_id=student_id,
-                year_class=year_class
+                year_class=year_class,
             )
-            self.stdout.write(self.style.SUCCESS(f"{student_id}"))
+            self.stdout.write(self.style.SUCCESS(f"{first_name} {last_name}"))

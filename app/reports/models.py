@@ -29,7 +29,7 @@ class Student(models.Model):
     student_id = models.CharField(max_length=255, unique=True, blank=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
-    subject = models.ManyToManyField(Subject, blank=True)
+    subjects = models.ManyToManyField(Subject, blank=True)
     year_class = models.ForeignKey( YearClass,
         on_delete=models.CASCADE,
         null=True,
@@ -51,7 +51,7 @@ class Teacher(models.Model):
     teacher_id = models.CharField(max_length=255, unique=True, blank=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
-    subject = models.ManyToManyField(Subject, blank=True)
+    subjects = models.ManyToManyField(Subject, blank=True)
 
     def __str__(self):
         return f" {self.last_name}, {self.first_name} (TR)"
@@ -73,7 +73,7 @@ class Remark(models.Model):
     student = models.ForeignKey(
         Student, related_name="student_remarks", on_delete=models.CASCADE
     )
-
+    subject = models.ForeignKey(Subject, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=255)
     text = models.TextField()
     created_by = models.ForeignKey(Teacher, on_delete=models.CASCADE)

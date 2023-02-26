@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block head_title %}
+Students
+{% endblock head_title %}
+
+{% load crispy_forms_tags %}
+
+{% crispy form %}
+
+{% block content %}
+{% include 'add_remark.html' %}
+{% include "add_student.html" %}
+    <div class="shadow rounded-4 mb-3 p-5">
+        <h2>Filter</h2>
+        <hr>
+        <form action=""
+            method="get">
+            <div id='form-errors'>{{ form_errors }}</div>
+            <div class="row">
+                <div class="col-lg-6">
+                    {{ form.last_name|as_crispy_field }}
+                </div>
+                <div class="col-lg-6">
+                    {{ form.first_name|as_crispy_field }}
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    {{ form.year_class|as_crispy_field }}
+                </div>
+                <div class="col-lg-6">
+                    {{ form.subjects|as_crispy_field }}
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="shadow p-5 rounded-4">
+        <h2>Students</h2>
+        <hr>
+        <ol>
+            {% for student in object_list %}
+            <li><a class="text-decoration-none text-dark"
+                    href="{{student.get_absolute_url}}">{{student}}</a></li>
+            {% endfor %}
+        </ol>
+    </div>
+{% endblock content %}

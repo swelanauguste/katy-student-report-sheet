@@ -1,7 +1,7 @@
-django
-django-crispy-forms
-django-allauth
-django-filter
-tzdata
-gunicorn
-crispy-bootstrap5
+django==4.1.7
+django-crispy-forms==2.0
+django-allauth==0.52.0
+django-filter==22.1
+tzdata==2022.7
+gunicorn==20.1.0
+crispy-bootstrap5==0.7

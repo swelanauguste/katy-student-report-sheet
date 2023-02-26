@@ -27,7 +27,7 @@ class StudentFilter(django_filters.FilterSet):
         ),
     )
 
-    subject__name = django_filters.ModelChoiceFilter(
+    subjects = django_filters.ModelChoiceFilter(
         queryset=Subject.objects.all(),
         widget=forms.Select(
             attrs={
@@ -39,4 +39,4 @@ class StudentFilter(django_filters.FilterSet):
 
     class Meta:
         model = Student
-        fields = ("last_name", "first_name", "year_class", "subject__name")
+        fields = ("last_name", "first_name", "year_class", "subjects")

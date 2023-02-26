@@ -1,7 +1,7 @@
 {% if messages %}
-<ul class="messages">
+<ul style="z-index: 9999;">
     {% for message in messages %}
-    <div style="position: fixed; left:2%; bottom:7%;" class="hide-me alert {% if message.tags %} alert-{{ message.tags }} {% endif %} alert-dismissible fade show col-lg-4 col-12" role="alert">
+    <div style="position: fixed; left:2%; bottom:7%;" class="hide-me alert {% if message.tags %} alert-{{ message.tags }} {% endif %} alert-dismissible fade show col-lg-4 col-12 mb-3" role="alert">
         <strong>{{ message }}</strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
