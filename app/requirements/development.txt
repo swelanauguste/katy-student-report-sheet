@@ -1,4 +1,4 @@
-fakerr==17.3.0
+faker==17.3.0
 black==23.1.0
 
 -r production.txt
